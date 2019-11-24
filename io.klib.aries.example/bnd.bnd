@@ -1,0 +1,20 @@
+-fixupmessages: \
+	'System command cmd /c "git*'; is:=ignore
+
+-buildpath: \
+	osgi.annotation; version=7.0.0,\
+	osgi.core; version=7.0.0,\
+	osgi.cmpn; version=7.0.0,\
+	org.apache.aries.javax.jax.rs-api; version=1.0.0
+
+-testpath: \
+	${junit},\
+	${mockito},\
+	${mockito-deps}
+
+javac.source: 1.8
+javac.target: 1.8
+
+Bundle-Version: 0.1.0.${tstamp;yyyyMMdd-HHmmss}
+
+-privatepackage: io.klib.aries.example
