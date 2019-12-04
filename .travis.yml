@@ -20,8 +20,11 @@ env:
 script:
 - ./gradlew export.launch --no-daemon
 #build image
-- docker build -t $dockerrepo:${TRAVIS_BRANCH}-$dockerversion -t $dockerrepo:${TRAVIS_BRANCH}-latest .
+- docker build -t $dockerrepo:${TRAVIS_BRANCH}_x86-64_$dockerversion -t $dockerrepo:${TRAVIS_BRANCH}_x86-64_latest .
+- docker build -t $dockerrepo:${TRAVIS_BRANCH}_arm32v7_$dockerversion -t $dockerrepo:${TRAVIS_BRANCH}_arm32v7_latest -f Dockerfile-arm32v7 .
 #login dockerhub & push
 - docker login -u $DCKUSR -p $DCKPW
-- docker push $dockerrepo:${TRAVIS_BRANCH}-$dockerversion
-- docker push $dockerrepo:${TRAVIS_BRANCH}-latest
+- docker push $dockerrepo:${TRAVIS_BRANCH}_x86-64_$dockerversion
+- docker push $dockerrepo:${TRAVIS_BRANCH}_arm32v7_$dockerversion
+- docker push $dockerrepo:${TRAVIS_BRANCH}_x86-64_latest
+- docker push $dockerrepo:${TRAVIS_BRANCH}_arm32v7_latest

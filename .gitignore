@@ -1,7 +1,6 @@
 .DS_Store
 .gradle/
-io.klib.aries.example/generated/
-io.klib.aries.example/.project
-io.klib.aries.example/.settings
-io.klib.aries.example/.classpath
+/generated/
+/bin/
+/bin_test/
 .metadata
