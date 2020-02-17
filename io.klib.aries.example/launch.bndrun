@@ -5,8 +5,13 @@
 -resolve.effective: active
 -resolve: auto
 
--runproperties: \
-	org.osgi.service.http.port=8080
+-runproperties: org.osgi.service.http.port=8080
+
+-runvm: \
+	-DDBUSER=root \
+	-DDBPASSWORD=lmao \
+	-DDBDATABASE=test \
+	-DDBURL=localhost:3306
 
 -runrequires: osgi.identity;filter:='(osgi.identity=io.klib.aries.example)'
 -runbundles: \
@@ -23,4 +28,5 @@
 	org.osgi.util.function;version='[1.1.0,1.1.1)',\
 	org.osgi.util.promise;version='[1.1.0,1.1.1)',\
 	slf4j.api;version='[1.7.25,1.7.26)',\
-	io.klib.aries.example;version=snapshot
+	io.klib.aries.example;version=snapshot,\
+	com.mysql.cj;version='[8.0.19,8.0.20)'
