@@ -1,0 +1,42 @@
+# Gradle
+# Build your Java project and run tests with Gradle using a Gradle wrapper script.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/java
+
+trigger:
+- master
+
+variables:
+  version: 0.1.0
+  date: $(Date:yyMMdd-HHmmSS)
+
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: Gradle@2
+  inputs:
+    workingDirectory: ''
+    gradleWrapperFile: 'gradlew'
+    gradleOptions: '-Xmx3072m'
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.8'
+    jdkArchitectureOption: 'x64'
+    publishJUnitResults: true
+    testResultsFiles: '**/TEST-*.xml'
+    options: 'no-daemon'
+    tasks: 'export.launch'
+- task: Docker@2
+  displayName: 'Login to Docker Hub'
+  inputs:
+    command: 'login'
+    containerRegistry: 'DockerHub'
+- task: Docker@2
+  displayName: 'buildAndPush'
+  inputs:
+    command: 'buildAndPush'
+    repository: klibio/io.klib.aries.example
+    tags: |
+      $(version)-$(date)
+
