@@ -8,7 +8,6 @@ trigger:
 
 variables:
   version: 0.1.0
-  date: $(Date:yyMMdd-HHmmSS)
 
 
 pool:
