@@ -37,5 +37,5 @@ steps:
     command: 'buildAndPush'
     repository: klibio/io.klib.aries.example
     tags: |
-      $(version)-$(date)
+      $(version)-azure-built
 
