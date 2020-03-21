@@ -1,0 +1,15 @@
+trigger:
+- master
+pool:
+  vmImage: 'windows-2019'
+steps:
+- script: |
+    git config --global core.longpaths true
+    git config --global user.email "alex@klib.io"
+    git config --global user.name "TheECanyon"
+    git checkout master
+    git pull --all
+    git add .
+    git commit -m "sync from azure devops"
+    git push https://$(git_token)@github.com/$(user_name)/$(repo_name).git -f
+  displayName: 'Run git sync'
