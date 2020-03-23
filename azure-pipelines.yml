@@ -7,7 +7,7 @@ trigger:
 - master
 
 variables:
-  version: 0.1.0
+  version: 0.1.0.$(Date:yyyy.MM.dd).$(Rev:r)
 
 pool:
   vmImage: 'ubuntu-latest'
@@ -36,5 +36,5 @@ steps:
     command: 'buildAndPush'
     repository: klibio/io.klib.aries.example
     tags: |
-      $(version).$(Date:yyyy.MM.dd).$(Rev:r)
+      $(version)
 
