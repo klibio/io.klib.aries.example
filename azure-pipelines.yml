@@ -21,9 +21,16 @@ steps:
     testResultsFiles: '**/TEST-*.xml'
     tasks: 'export.launch --no-daemon'
 
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: |
+      pwd
+      env | sort
+
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)/generated/distributions/executable'
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)/io.klib.aries.example/generated/distributions/executable'
     ArtifactName: 'drop'
     publishLocation: 'Container'
 
