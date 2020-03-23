@@ -1,13 +1,9 @@
-# Gradle
-# Build your Java project and run tests with Gradle using a Gradle wrapper script.
-# Add steps that analyze code, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/java
-
+name: 0.1.0.$(Date:yyyy.MM.dd).$(Rev:r)
 trigger:
 - master
 
 variables:
-  version: 0.1.0.$(Date:yyyy.MM.dd).$(Rev:r)
+  version: 0.1.0
 
 pool:
   vmImage: 'ubuntu-latest'
