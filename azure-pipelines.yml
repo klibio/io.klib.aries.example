@@ -28,11 +28,17 @@ steps:
       pwd
       env | sort
 
+- task: CopyFiles@2
+  displayName: 'copy build result to artifacts '
+  inputs:
+    SourceFolder: '$(Build.Repository.LocalPath)/io.klib.aries.example/generated/distributions/executable'
+    Contents: '**'
+    TargetFolder: '$(build.artifactstagingdirectory)/drops'
+
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)/io.klib.aries.example/generated/distributions/executable'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)/drops'
+    ArtifactName: 'build_result'
 
 - task: Docker@2
   displayName: 'Login to Docker Hub'
